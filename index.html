@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Web Push Notifications</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="//fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+    <link rel="manifest" href="manifest.json"/>
+    <style>
+        #application {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        #subscribe {
+            display: none;
+        }
+
+        #subscribe.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<section id="application">
+    <button type="button" id="subscribe">Subscribe!</button>
+</section>
+<script>
+    window.Pushwoosh = window.Pushwoosh || [];
+    window.Pushwoosh.push(['init', {
+      logLevel: 'info',
+      applicationCode: '0DA4A-FFDCE',
+      safariWebsitePushID: 'web.io.github.yuri-zaitsev',
+      serviceWorkerUrl: 'service-worker.js'
+    }]);
+
+    const $button = document.getElementById('subscribe');
+    if ($button) {
+      Pushwoosh.push(function () {
+        $button.addEventListener('click', function () {
+          Pushwoosh.subscribe();
+        });
+
+        $button.classList.add('visible');
+      });
+    }
+</script>
+<script type="text/javascript" src="//cdn.pushwoosh.com/webpush/v3/pushwoosh-web-notifications.js" async></script>
+</body>
+</html>

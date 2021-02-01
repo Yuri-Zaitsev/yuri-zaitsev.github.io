@@ -1,0 +1,7 @@
+{
+  "name": "Web Push Notifications",
+  "short_name": "Web Push Notifications",
+  "gcm_sender_id": "298505113806",
+  "display": "standalone",
+  "gcm_user_visible_only": true
+}
